@@ -1,0 +1,9 @@
+input.ng-invalid.ng-touched{
+	border : 1px solid red;
+}
+span.help-block {
+	color : red;
+	font-size: 6;
+	font-style: italic;
+	text-align: center;	
+}
