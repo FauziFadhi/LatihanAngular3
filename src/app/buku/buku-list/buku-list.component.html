@@ -7,14 +7,12 @@
 		<th>Action</th>
 	</tr>
 		
-	<tr *ngFor="let tp of bukuList; let i=index ">
-		<td>{{ i+1 }}</td>
-		<td>{{  tp.isbn }}</td>
-		<td>{{  tp.nama }}</td>
-		<td >{{  tp.qty }}</td>
-		<td><button (click)="deleteItem(i)">Delete</button></td>
-	</tr>
-	<tr>
-		<td>{{ total() }}</td>
+	
+	<tr *ngFor="let item of items; let i=index;">
+		<td> {{item.id}}</td>
+		<td> {{item.name}}</td>
+		<td> {{item.qty}}</td>
+		<td> {{item.price}}</td>
+		<td><a class="btn btn-primary" [routerLink]="['/item-edit',item.id]" (click)="edit(item.id)"></a></td>
 	</tr>
 </table>

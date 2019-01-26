@@ -1,5 +1,6 @@
 export class Buku{
-	isbn : string;
-	nama : string;
+	id : string;
+	name : string;
 	qty	: number;
+	price : number;
 }

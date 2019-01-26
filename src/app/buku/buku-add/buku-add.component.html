@@ -1,17 +1,18 @@
 <form [formGroup]="bukuForm" (ngSubmit)="pilih()">
-  <input type="text" placeholder="ISBN" [formControlName]="'isbn'">
-  <span class="help-block" *ngIf="!bukuForm.get('isbn').valid && bukuForm.get('isbn').touched">
-				<span *ngIf="bukuForm.get('isbn').errors['required']">isbn required</span>
-  <span *ngIf="bukuForm.get('isbn').errors['minLength']">cant be empty</span>
-  </span>&nbsp;
-  <input type="text" placeholder="Nama Buku" [formControlName]="'nama'"> &nbsp;
-  <span class="help-block" *ngIf="!bukuForm.get('nama').valid && bukuForm.get('nama').touched">
-				<span *ngIf="bukuForm.get('nama').errors['required']">nama required</span>
-  <span *ngIf="bukuForm.get('nama').errors['minLength']">cant be empty</span>
+  <input type="text" placeholder="Nama Buku" [formControlName]="'name'"> &nbsp;
+  <span class="help-block" *ngIf="!bukuForm.get('name').valid && bukuForm.get('name').touched">
+				<span *ngIf="bukuForm.get('name').errors['required']">name required</span>
+  <span *ngIf="bukuForm.get('name').errors['minLength']">cant be empty</span>
   </span>&nbsp;
   <input type="text" [formControlName]="'qty'" placeholder="Qty"> &nbsp;
   <span class="help-block" *ngIf="!bukuForm.get('qty').valid && bukuForm.get('qty').touched">
-				<span *ngIf="bukuForm.get('qty').errors['required']">qty required</span>
+        <span *ngIf="bukuForm.get('qty').errors['required']">qty required</span>
   </span>&nbsp;
-  <button type="button" (click)="pilih()">Add</button>
+ <input type="text" [formControlName]="'price'" placeholder="price"> &nbsp;
+  <span class="help-block" *ngIf="!bukuForm.get('price').valid && bukuForm.get('price').touched">
+				<span *ngIf="bukuForm.get('price').errors['required']">price required</span>
+  </span>&nbsp;
+  <button type="submit">Add</button>
 </form>
+<app-buku-list [childListen]=parentTalk (id)="getId($event)"></app-buku-list>
+

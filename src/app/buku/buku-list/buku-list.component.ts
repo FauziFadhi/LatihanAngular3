@@ -1,30 +1,37 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { Buku } from '../buku.model';
+import { ItemServiceService } from '../../item-service.service';
 @Component({
   selector: 'app-buku-list',
   templateUrl: './buku-list.component.html',
-  styleUrls: ['./buku-list.component.css']
+  styleUrls: ['./buku-list.component.css'],
+  providers : [ItemServiceService]
+
 })
-export class BukuListComponent implements OnInit {
+export class BukuListComponent implements OnInit, OnChanges {
 
-  @Input() bukuList : Buku[];
+  constructor(private service : ItemServiceService) { }
+  @Input() childListen : string;
 
-  @Output() bukuDelete = new EventEmitter<Buku>();
-  constructor() { }
-
+  @Output() id = new EventEmitter<String>();
+  items : Buku[];
   ngOnInit() {
+
+    this.service.getListItem().subscribe(data => {
+      console.log(data);
+      this.items = data;
+    });
+    console.log(this.items);
   }
 
-  deleteItem(i){
-  	this.bukuDelete.emit(i);
+  edit(id){
+    console.log('buku list'+id);
+    this.id.emit(id);
   }
 
-  total() : number{
-    var total = 0;
-    for (var i = 0; i < this.bukuList.length; i++) {
-      total = total + this.bukuList[i].qty.valueOf();
-    }
-    console.log(total);
-    return total;
+  ngOnChanges(){
+    console.log(this.childListen);
+    this.ngOnInit();
   }
+
 }
